@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Assignment2.Models.User>
+
+@{
+    ViewBag.Title = "RegisteredUser";
+}
+
+<h2>Index</h2>
+
+@if (TempData["InsertMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Success!</strong>@TempData["InsertMessage"]
+    </div>
+}
+
+@if (TempData["UpdateMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Success!</strong>@TempData["UpdateMessage"]
+    </div>
+}
+
+@if (TempData["DeleteMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Success!</strong>@TempData["DeleteMessage"]
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Sign up", "SignUp")
+</p>
+<table class="table table-bordered table-hover table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>Modification</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            
+            <td>
+                @Html.ActionLink("Update", "Update", new { id = item.id }) |
+                @Html.ActionLink("Profile", "Profile", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
